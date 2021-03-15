@@ -19,8 +19,12 @@
 
 <body>
   <h1>Blade/Index</h1>
-  <p>これはサンプルページです。</p>
-  <p>{{$msg}}</p>
+
+  @if ($msg != '')
+  <p>こんにちは、{{$msg}}さん。</p>
+  @else
+  <p>何か書いてください。</p>
+  @endif
   <form action="/hello" method="post">
   @csrf
     <input type="text" name="msg">
