@@ -1,33 +1,19 @@
-<html>
+@extends ('layouts.helloapp')
 
-<head>
-  <title>Hello/Index</title>
-  <style>
-    body {
-      font-size: 16pt;
-      color: #999;
-    }
+@section('title', 'Index')
 
-    h1 {
-      font-size: 100pt;
-      text-align: right;
-      color: #f6f6f6;
-      margin: -50px 0px -120px 0px;
-    }
-  </style>
-</head>
+@section('menubar')
+  @parent
+  インデックスページ
+@endsection
 
-<body>
-  <h1>Blade/Index</h1>
+@section('content')
+  <p>ここが本文のコンテンツです。</p>
+  <ul>
+    @each('components.item', $data,'item')
+  </ul>
+@endsection
 
-  @if ($msg != '')
-  <p>こんにちは、{{$msg}}さん。</p>
-  @else
-  <p>何か書いてください。</p>
-  @endif
-  <form action="/hello" method="post">
-  @csrf
-    <input type="text" name="msg">
-    <input type="submit" value="送信する">
-  </form>
-</body>
+@section('footer')
+copyright 2021 hanamoto.
+@endsection
