@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\HelloRequest;
 
 class HelloController extends Controller
 {
-    public function index() {
-        $data = [
-            ['name'=>'山田太郎', 'mail'=>'taro@yamada'],
-            ['name'=>'田中花子', 'mail'=>'hanako@tanaka'],
-            ['name'=>'鈴木さちこ', 'mail'=>'sachiko@suzuki']
-        ];
-        return view('hello.index',['data'=>$data]);
+    public function index(Request $request) {
+        return view('hello.index', ['msg'=>'フォームを入力:']);
+    }
+    public function post(HelloRequest $request) {
+        return view('hello.index', ['msg' =>'正しく入力されました！']);
     }
 }
