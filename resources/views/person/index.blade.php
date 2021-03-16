@@ -1,6 +1,6 @@
-@extends ('layouts.helloapp')
+@extends('layouts.helloapp')
 
-@section('title', 'Index')
+@section('title', 'Person.index')
 
 @section('menubar')
   @parent
@@ -12,9 +12,10 @@
   <p>{{$item->name}}</p>
   <p>{{$item->mail}}</p>
   <p>{{$item->age}}</p>
+
   @endforeach
 @endsection
 
 @section('footer')
-copyright 2021 hanamoto.
+copyright 2021 hanaomoto.
 @endsection
