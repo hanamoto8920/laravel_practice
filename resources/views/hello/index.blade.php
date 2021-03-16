@@ -1,33 +1,38 @@
-<html>
+@extends ('layouts.helloapp')
 
-<head>
-  <title>Hello/Index</title>
-  <style>
-    body {
-      font-size: 16pt;
-      color: #999;
-    }
+@section('title', 'Index')
 
-    h1 {
-      font-size: 100pt;
-      text-align: right;
-      color: #f6f6f6;
-      margin: -50px 0px -120px 0px;
-    }
-  </style>
-</head>
+@section('menubar')
+  @parent
+  インデックスページ
+@endsection
 
-<body>
-  <h1>Blade/Index</h1>
-
-  @if ($msg != '')
-  <p>こんにちは、{{$msg}}さん。</p>
-  @else
-  <p>何か書いてください。</p>
-  @endif
-  <form action="/hello" method="post">
+@section('content')
+<p>{{$msg}}</p>
+@if (count($errors) > 0)
+<p>入力に問題があります。再入力してください。</p>
+@endif
+<form action="/hello" method="post">
+  <table>
   @csrf
-    <input type="text" name="msg">
-    <input type="submit" value="送信する">
-  </form>
-</body>
+  @error('name')
+  <tr><th>ERROR</th>
+  <td>{{$message}}</td></tr>
+  @enderror
+  <tr><th>name:</th><td><input type="text" name="name" value="{{old('name')}}"></td></tr>
+  @if ($errors->has('mail'))
+  <tr><th>ERROR:</th><td>{{$errors->first('mail')}}</td></tr>
+  @endif
+  <tr><th>mail:</th><td><input type="text" name="mail" value="{{old('mail')}}"></td></tr>
+  @if ($errors->has('age'))
+  <tr><th>ERROR:</th><td>{{$errors->first('age')}}</td></tr>
+  @endif
+  <tr><th>age:</th><td><input type="text" name="age" value="{{old('age')}}"></td></tr>
+  <tr><th></th><td><input type="submit" value="送信"></td></tr>
+  </table>
+</form>
+@endsection
+
+@section('footer')
+copyright 2021 hanamoto.
+@endsection
