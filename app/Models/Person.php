@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    public function getData() {
+        return $this -> id. $this -> name. 'メール'.$this -> email. $this -> age;
+    }
 }

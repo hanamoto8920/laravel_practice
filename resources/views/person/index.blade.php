@@ -12,8 +12,8 @@
   <p>{{$item->name}}</p>
   <p>{{$item->mail}}</p>
   <p>{{$item->age}}</p>
-  @endforeach
 
+  @endforeach
 @endsection
 
 @section('footer')
