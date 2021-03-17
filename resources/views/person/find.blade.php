@@ -23,6 +23,8 @@
 @endif
 @endsection
 
+<a href="/person">トップ</a>
+
 @section('footer')
 フッターだよ〜
 @endsection
