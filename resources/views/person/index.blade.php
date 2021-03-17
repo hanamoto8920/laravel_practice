@@ -8,13 +8,32 @@
 @endsection
 
 @section('content')
-  @foreach($items as $item)
-  <p>ID：{{$item->id}}</p>
-  <p>名前は、{{$item->name}}</p>
-  <p>メールは、{{$item->mail}}</p>
-  <p>年齢は、{{$item->age}}歳</p>
-
-  @endforeach
+<table>
+    <tr><th>Person</th><th>Board</th></tr>
+    @foreach($hasItems as $item)
+    <tr>
+      <td>{{$item->getData()}}</td>
+      <td>
+        @if ($item->boards != null)
+          <table width="100%">
+            @foreach ($item->boards as $obj)
+              <tr><td>{{$obj->getData()}}</td></tr>
+            @endforeach
+          </table>
+        @endif
+      </td>
+    @endforeach
+    </tr>
+</table>
+<div style="margin:10px;"></div>
+<table>
+  <tr><th>Person</th></tr>
+    @foreach ($noItems as $item)
+    <tr>
+      <td>{{$item->getData()}}</td>
+    </tr>
+    @endforeach
+</table>
 @endsection
 
 <a href="/person/add">追加</a>
