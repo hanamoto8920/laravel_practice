@@ -1,29 +1,40 @@
-<html>
+@extends ('layouts.helloapp')
+<style>
+  .pagination {font-size:10pt; }
+  .pagination li{display: inline-block;}
+  tr th a:link {color: white;}
+  tr th a:visited {color: white;}
+  tr th a:hover {color: white;}
+  tr th a:active {color: white;}
+</style>
 
-<head>
-  <title>Hello/Index</title>
-  <style>
-    body {
-      font-size: 16pt;
-      color: #999;
-    }
+@section('title', 'Index')
 
-    h1 {
-      font-size: 100pt;
-      text-align: right;
-      color: #f6f6f6;
-      margin: -50px 0px -120px 0px;
-    }
-  </style>
-</head>
+@section('menubar')
+  @parent
+  インデックスページ
+@endsection
 
-<body>
-  <h1>Blade/Index</h1>
-  <p>これはサンプルページです。</p>
-  <p>{{$msg}}</p>
-  <form action="/hello" method="post">
-  @csrf
-    <input type="text" name="msg">
-    <input type="submit" value="送信する">
-  </form>
-</body>
+@section('content')
+  <table>
+    <tr>
+    <th><a href="/hello?sort=name">name</a></th>
+    <th><a href="/hello?sort=mail">mail</a></th>
+    <th><a href="/hello?sort=age">age</a></th>
+    </tr>
+    @foreach($items as $item)
+    <tr>
+      <td>{{$item->name}}</td>
+      <td>{{$item->mail}}</td>
+      <td>{{$item->age}}</td>
+    </tr>
+    @endforeach
+  </table>
+  {{ $items->appends(['sort' => $sort])->links()}}
+@endsection
+
+<a href="/person/add">追加</a>
+
+@section('footer')
+copyright 2021 hanamoto.
+@endsection
