@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Person extends Model
 {
     public $timestamps = false;
-    
+
     protected $guarded = array('id');
 
     public static $rules = array(
@@ -19,6 +19,13 @@ class Person extends Model
     );
     public function getData() {
         return $this->id . ': ' . $this->name .' (' . $this->age .')';
+    }
+
+    // public function board() {
+    //     return $this->hasOne('App\Models\Board');
+    // }
+    public function boards() {
+        return $this->hasMany('App\Models\Board');
     }
 
     // use HasFactory;
