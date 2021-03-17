@@ -13,6 +13,10 @@ class HelloController extends Controller
         $items = DB::select('select * from people');
         return view('hello.index', ['items' => $items]);
     }
+    
+    public function rest(Request $request) {
+        return view('hello.rest');
+    }
     // public function post(HelloRequest $request) {
     //     return view('hello.index', ['msg' =>'正しく入力されました！']);
     // }
